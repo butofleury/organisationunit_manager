@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import {init} from 'd2/lib/d2'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Orgunits_list from './orgunits_list.js'
 class App extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class App extends Component {
       .filter()
       .on('level')
       .equals(4)
-      .list({paging : true, pageSize : 5, includeAncestors: true, fields: '[*],ancestors[id,displayName]'})
+      .list({paging : true, pageSize : 5, includeAncestors: true, fields: '[*],ancestors[id,displayName],organisationUnitGroups[id,displayName]'})
       .then(organisationunits => {
         this.setState({
           orgUnits_list : organisationunits.toArray()
@@ -48,12 +49,13 @@ class App extends Component {
   render() {
 
     return (
-      <div className="App">
+      <div className="App container-fluid">
         <header className="App-header">
 
         </header>
-
-        <Orgunits_list states={this.state}/>
+        <div className="thebody">
+          <Orgunits_list states={this.state}/>
+        </div>
       </div>
     );
   }

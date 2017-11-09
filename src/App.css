@@ -4,13 +4,19 @@
   padding: 20px;
   color: white;
 }
-
+.groups {
+  color: blue;
+}
 .App-title {
   font-size: 1.5em;
 }
 
 .App-intro {
   font-size: large;
+}
+
+.thebody {
+  margin-top: 100px
 }
 
 @keyframes App-logo-spin {

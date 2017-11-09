@@ -50,15 +50,23 @@ export default class Orgunitsgroups extends React.Component{
     let new_group = event.target.value;
     init(this.props.serverConnection)
     .then(d2 => {
+      d2.models.organisationUnitGroups.get(new_group)
+      .then(new_groups => {
         d2.models.organisationUnits.get(this.props.orgUnit_id)
-        .then(orgUnit => {
-          let orgUnitGroup = d2.models.organisationUnitGroup.create()
-          orgUnit.organisationUnitGroups.add(new_group)
-          console.log("log",orgUnit.organisationUnitGroups.list())
-          orgUnitGroup.id = new_group
-
+        .then(organisationUnit => {
+          const result_add = new_groups.organisationUnits.add(organisationUnit).save();
+          if(this.state.selected != ""){
+            d2.models.organisationUnitGroups.get(this.state.selected)
+            .then(old_groups => {
+              const result_deletion = old_groups.organisationUnits.remove(organisationUnit).save();
+              console.log("Add", result_add);
+              console.log("deletion", result_deletion);
+            })
+          }
         })
+      })
     })
+
   }
   render() {
     //console.log(this.props.groupSets);

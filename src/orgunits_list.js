@@ -18,7 +18,7 @@ export default class Orgunits_list extends React.Component{
                 </tr>
               </thead>
               <tbody>
-              {this.props.states.orgUnits_list.map(orgUnit => <OrgUnitsRow orgUnit_item={orgUnit} orgUnitGroupSets={this.props.states.orgUnitsGroupSets_list}/>)}
+              {this.props.states.orgUnits_list.map(orgUnit => <OrgUnitsRow orgUnit_item={orgUnit} orgUnitGroupSets={this.props.states.orgUnitsGroupSets_list} serverConnection={this.props.states.configServer}/>)}
               </tbody>
           </table>
         </div>)
@@ -36,7 +36,7 @@ class OrgUnitsRow extends React.Component{
         {this.props.orgUnit_item.ancestors.toArray().splice(1,3).map(ancestor => <OrgUnitsAncestors ancestor={ancestor}/>)}
 
         <td>{this.props.orgUnit_item.displayName}</td>
-        <td><Orgunitsgroups Orggroups={this.props.orgUnit_item.organisationUnitGroups.toArray()} orgUnit_id={this.props.orgUnit_item.id} groupSets={this.props.orgUnitGroupSets}/></td>
+        <td><Orgunitsgroups Orggroups={this.props.orgUnit_item.organisationUnitGroups.toArray()} orgUnit_id={this.props.orgUnit_item.id} groupSets={this.props.orgUnitGroupSets} serverConnection={this.props.serverConnection}/></td>
       </tr>
     )
   }

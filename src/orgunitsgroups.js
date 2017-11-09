@@ -8,6 +8,7 @@ export default class Orgunitsgroups extends React.Component{
       selected:""
     }
     this.handleChangeGroupSet = this.handleChangeGroupSet.bind(this);
+    this.handleUpdateGroups = this.handleUpdateGroups.bind(this);
   }
   handleChangeGroupSet(event) {
 
@@ -26,16 +27,16 @@ export default class Orgunitsgroups extends React.Component{
       this.setState({
         groups: linked_groups
       })
-      console.log(linked_groups);
+      //console.log(linked_groups);
       let that = this
-      this.props.Orggroups.forEach(function(existant_groups) {
-        //console.log("test",existant_groups.id)
-        linked_groups.forEach(function(linked_groups){
-          if(existant_groups.id == linked_groups.id) {
+      linked_groups.forEach(function(existant_groups) {
+        that.props.Orggroups.forEach(function(linked_group){
+          //console.log("test",linked_group.id, existant_groups.id )
+          if(existant_groups.id == linked_group.id) {
+
             that.setState({
               selected:existant_groups.id
             });
-            //return
           }
         });
       });
@@ -43,6 +44,21 @@ export default class Orgunitsgroups extends React.Component{
 
     }
 
+  }
+
+  handleUpdateGroups(event) {
+    let new_group = event.target.value;
+    init(this.props.serverConnection)
+    .then(d2 => {
+        d2.models.organisationUnits.get(this.props.orgUnit_id)
+        .then(orgUnit => {
+          let orgUnitGroup = d2.models.organisationUnitGroup.create()
+          orgUnit.organisationUnitGroups.add(new_group)
+          console.log("log",orgUnit.organisationUnitGroups.list())
+          orgUnitGroup.id = new_group
+
+        })
+    })
   }
   render() {
     //console.log(this.props.groupSets);
@@ -52,9 +68,9 @@ export default class Orgunitsgroups extends React.Component{
       {this.props.groupSets.map(groupSet => <GroupSet groupSet={groupSet}/>)}
       </select>
       <br/>
-      <select>
+      <select onChange={this.handleUpdateGroups}>
       <option value="">Select ...</option>
-      {this.state.groups.map(groupSet => <Groups groupSet={groupSet} selected={this.props.selected}/>)}
+      {this.state.groups.map(groupSet => <Groups groupSet={groupSet} selected={this.state.selected}/>)}
       </select>
       </div>)
   }
@@ -72,9 +88,9 @@ class GroupSet extends React.Component{
 
 class Groups extends React.Component{
   render() {
-    //console.log(this.props.selected)
+    console.log(this.props.selected)
     return (
-        <option value={this.props.groupSet.id} >
+        <option value={this.props.groupSet.id} selected={this.props.groupSet.id == this.props.selected}>
               {this.props.groupSet.displayName}
           </option>)
   }

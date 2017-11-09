@@ -1,5 +1,6 @@
 import React from 'react'
 import Orgunitsgroups from './orgunitsgroups.js'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 export default class Orgunits_list extends React.Component{
   constructor(props) {
     super(props);
@@ -8,7 +9,7 @@ export default class Orgunits_list extends React.Component{
   render() {
     //console.log(this.props.states.orgUnits_list);
     return (<div>
-          <table>
+          <table className="table table-striped">
               <thead>
                 <tr>
                   <th>District</th>

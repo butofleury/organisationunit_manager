@@ -1,10 +1,10 @@
 .App-header {
-  background-color: #222;
+  background-color: #ccccb3;
   height: 80px;
   padding: 20px;
   color: white;
 }
-.groups {
+span {
   color: blue;
 }
 .App-title {

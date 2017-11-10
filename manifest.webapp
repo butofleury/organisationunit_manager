@@ -1,0 +1,20 @@
+{
+  "launch_path": "index.html",
+  "default_locale": "en",
+  "activities": {
+    "dhis": {
+      "href": "*"
+    }
+  },
+  "appType": "APP",
+  "name": "organisationunit_manager",
+  "version": "0.1.0",
+  "description": "OrganisationUnit Groups Manager",
+  "icons": {
+    "48": "/home/bluesquare/Documents/franck/dhis2 academy/blsq_icon.png"
+  },
+  "developer": {
+    "name": "HAKIZIMANA Franck And BUTOYI Fleury"
+  },
+  "manifest_generated_at": "Fri Nov 10 2017 08:18:46 GMT+0200 (CAT)"
+}

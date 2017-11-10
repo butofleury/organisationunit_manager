@@ -7,7 +7,6 @@ export default class Orgunits_list extends React.Component{
   }
 
   render() {
-    //console.log(this.props.states.orgUnits_list);
     return (<div>
           <table className="table table-striped">
               <thead>
@@ -15,7 +14,7 @@ export default class Orgunits_list extends React.Component{
                   <th>District</th>
                   <th>Chiefdom</th>
                   <th>Healh Facility</th>
-                  <th>GroupSets</th>
+                  <th>Organisation GroupSets ---> <span>Organisation Groups</span></th>
                   <th>Groups</th>
                 </tr>
               </thead>

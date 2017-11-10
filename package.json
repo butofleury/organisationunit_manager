@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "d2": "^28.3.0",
+    "d2-manifest": "^1.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-scripts": "1.0.17"
@@ -14,5 +15,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "manifest.webapp" : {
+    "description" : "OrganisationUnit Groups Manager",
+    "icons" : {"48":"/home/bluesquare/Documents/franck/dhis2 academy/blsq_icon.png"},
+    "developer" : {"name":"HAKIZIMANA Franck And BUTOYI Fleury"}
   }
 }

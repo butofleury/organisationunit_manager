@@ -23,7 +23,7 @@ class App extends Component {
       .filter()
       .on('level')
       .equals(4)
-      .list({paging : true, pageSize : 5, includeAncestors: true, fields: '[*],ancestors[id,displayName],organisationUnitGroups[id,displayName]'})
+      .list({paging : true, pageSize : 10, includeAncestors: true, fields: '[*],ancestors[id,displayName],organisationUnitGroups[id,displayName]'})
       .then(organisationunits => {
         this.setState({
           orgUnits_list : organisationunits.toArray()

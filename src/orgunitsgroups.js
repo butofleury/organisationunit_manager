@@ -53,15 +53,16 @@ export default class Orgunitsgroups extends React.Component{
           const result_add = new_groups.organisationUnits.add(organisationUnit).save();
             d2.models.organisationUnitGroups.get(this.state.selected)
             .then(old_groups => {
-                if(this.state.selected != ""){
-                  const result_deletion = old_groups.organisationUnits.remove(organisationUnit).save();
-                }
-                window.location.reload()
+                //if(this.state.selected != ""){
+                  const result_deletion = old_groups.organisationUnits.remove(organisationUnit).save()
+                  .then(deletion => {
+                    window.location.reload()
+                  });
+                //}
             })
         })
       })
     })
-
   }
   render() {
     return (<div>

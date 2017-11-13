@@ -43,7 +43,38 @@ class App extends Component {
     .catch(connection_error => {
         console.warn("Error Server connection", connection_error);
     });
+    this.searchorgunit = this.searchorgunit.bind(this);
+  }
 
+  searchorgunit(event){
+    var searchvalue = event.target.value.trim();
+
+    init(this.state.configServer)
+    .then(d2 => {
+      d2.models.organisationUnit
+      .filter()
+      .on('level')
+      .equals(4)
+      .filter()
+      .on('name')
+      .like(searchvalue)
+      .list({paging : true, includeAncestors: true, fields: '[*],ancestors[id,displayName],organisationUnitGroups[id,displayName]'})
+      .then(organisationunits => {
+        this.setState({
+          orgUnits_list : organisationunits.toArray()
+        });
+      })
+      .catch(error_fetching_orgUnits => {
+          console.warn("Didn't find orgUnits in the query", error_fetching_orgUnits);
+      });
+
+      d2.models.organisationUnitGroupSets.list({paging:false,fields: '[*],organisationUnitGroups[id,displayName]'})
+      .then(organisationUnitGroupsets => {
+        this.setState({
+          orgUnitsGroupSets_list : organisationUnitGroupsets.toArray()
+        });
+      });
+    })
   }
 
   render() {
@@ -54,6 +85,7 @@ class App extends Component {
 
         </header>
         <div className="thebody">
+          <input onChange={this.searchorgunit}  placeholder="Search by Organisationunit name" />
           <Orgunits_list states={this.state}/>
         </div>
       </div>

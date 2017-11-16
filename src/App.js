@@ -80,10 +80,7 @@ class App extends Component {
   render() {
 
     return (
-      <div className="App container-fluid">
-        <header className="App-header">
-
-        </header>
+      <div className="App container">
         <div className="thebody">
           <input onChange={this.searchorgunit}  placeholder="Search by Organisationunit name" />
           <Orgunits_list states={this.state}/>
